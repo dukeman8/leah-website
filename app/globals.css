@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* =========================
+   CSS VARIABLES
+   ========================= */
+
+:root {
+  --background: #f6f1e7;
+  --foreground: #1f1f1f;
+
+  --card: #161c19;
+  --card-hover: #1c2420;
+
+  --muted: #6b6b6b;
+  --muted-light: #b9b2a6;
+
+  --border: rgba(0, 0, 0, 0.12);
+  --border-light: rgba(255, 255, 255, 0.1);
+
+  --accent: #c8a96a;
+  --accent-hover: #d8bb7a;
+}
+
+/* =========================
+   BASE STYLES
+   ========================= */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
