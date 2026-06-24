@@ -50,17 +50,19 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-2 gap-12 items-start">
 
-            {/* IMAGE (FIXED) */}
+            {/* IMAGE (FIXED MOBILE CROPPING) */}
             <div className="w-full rounded-xl shadow-lg overflow-hidden">
 
-              <div className="relative w-full aspect-[4/5] md:aspect-[3/4]">
+              <div className="relative w-full aspect-[4/5] md:aspect-[3/4] bg-[#f6f1e7]">
+
                 <Image
                   src="/images/about.jpg"
                   alt="Leah Hanson"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-center"
+                  className="object-cover object-[center_25%] md:object-cover"
                 />
+
               </div>
 
             </div>
@@ -175,7 +177,7 @@ export default function AboutPage() {
 
             <Link
               href="/contact"
-              className="inline-block mt-7 px-6 py-3 bg-[#c8a96a] text-black text-sm rounded-md font-medium hover:bg-[#d8bb7a] transition"
+              className="inline-block mt-7 px-6 py-3 bg-[#1f1f1f] text-[#f6f1e7] text-sm rounded-md font-medium hover:bg-[#2a2a2a] transition"
             >
               Get in touch
             </Link>
