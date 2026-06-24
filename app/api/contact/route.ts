@@ -5,11 +5,11 @@ const resendApiKey = process.env.RESEND_API_KEY;
 const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
 
 if (!resendApiKey) {
-  throw new Error("Missing RESEND_API_KEY in environment variables");
+  throw new Error("Missing RESEND_API_KEY");
 }
 
 if (!recaptchaSecret) {
-  throw new Error("Missing RECAPTCHA_SECRET_KEY in environment variables");
+  throw new Error("Missing RECAPTCHA_SECRET_KEY");
 }
 
 const resend = new Resend(resendApiKey);
@@ -20,13 +20,11 @@ export async function POST(req: Request) {
 
     const { token, name, email, message, telephone, enquiry } = body;
 
-    console.log("📩 Incoming form submission:", {
-      name,
-      email,
-      enquiry,
-    });
+    console.log("📩 Incoming submission:", { name, email, enquiry });
 
-    // Validate required fields
+    // -----------------------------
+    // VALIDATION
+    // -----------------------------
     if (!token || !name || !email || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -35,8 +33,12 @@ export async function POST(req: Request) {
     }
 
     // -----------------------------
-    // VERIFY RECAPTCHA
+    // RECAPTCHA VERIFY
     // -----------------------------
+    const formData = new URLSearchParams();
+    formData.append("secret", recaptchaSecret);
+    formData.append("response", token);
+
     const verifyRes = await fetch(
       "https://www.google.com/recaptcha/api/siteverify",
       {
@@ -44,16 +46,13 @@ export async function POST(req: Request) {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: new URLSearchParams({
-          secret: recaptchaSecret,
-          response: token,
-        }),
+        body: formData,
       }
     );
 
     const verifyData = await verifyRes.json();
 
-    console.log("🛡️ reCAPTCHA response:", verifyData);
+    console.log("🛡️ reCAPTCHA result:", verifyData);
 
     if (!verifyData.success) {
       return NextResponse.json(
@@ -68,10 +67,10 @@ export async function POST(req: Request) {
     console.log("📨 Sending email via Resend...");
 
     const emailResponse = await resend.emails.send({
-      from: "Leah Hanson <mail@leahhanson.co.uk>", // ✅ FIXED
+      from: "Leah Hanson <mail@leahhanson.co.uk>",
       to: "leah.hanson@gunnercooke.com",
       subject: "New Contact Form Submission",
-      reply_to: email, // optional but useful
+      reply_to: email,
       html: `
         <h2>New Enquiry</h2>
         <p><strong>Name:</strong> ${name}</p>
