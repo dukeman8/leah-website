@@ -30,6 +30,8 @@ export default function ContactForm() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    const form = e.currentTarget; // ✅ IMPORTANT FIX
+
     setSuccess(false);
     setError(null);
 
@@ -40,7 +42,7 @@ export default function ContactForm() {
 
     setLoading(true);
 
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
 
     const payload = {
       name: String(formData.get("name") || ""),
@@ -67,7 +69,9 @@ export default function ContactForm() {
       }
 
       setSuccess(true);
-      e.currentTarget.reset();
+
+      // ✅ SAFE RESET (FIXED BUG)
+      form.reset();
       setCaptchaValue(null);
     } catch (err: any) {
       setError(err.message || "Something went wrong");
