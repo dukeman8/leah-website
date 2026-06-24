@@ -48,18 +48,20 @@ export default function AboutPage() {
       <section className="bg-[#f6f1e7]">
         <div className="max-w-6xl mx-auto px-6 py-24">
 
-          <div className="grid md:grid-cols-2 gap-12 items-stretch">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
 
-            {/* IMAGE */}
-            <div className="relative h-full min-h-130 overflow-hidden rounded-xl shadow-lg">
+            {/* IMAGE (FIXED) */}
+            <div className="w-full rounded-xl shadow-lg overflow-hidden">
 
-              <Image
-                src="/images/about.jpg"
-                alt="Leah Hanson"
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover object-center"
-              />
+              <div className="relative w-full aspect-[4/5] md:aspect-[3/4]">
+                <Image
+                  src="/images/about.jpg"
+                  alt="Leah Hanson"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover object-center"
+                />
+              </div>
 
             </div>
 
@@ -107,7 +109,7 @@ export default function AboutPage() {
 
           </div>
 
-          {/* What we can help with */}
+          {/* Services */}
           <div className="mt-12">
 
             <p className="text-xs uppercase tracking-[0.22em] text-[#c8a96a]">
