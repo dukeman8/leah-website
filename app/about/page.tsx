@@ -34,7 +34,7 @@ export default function AboutPage() {
           </p>
 
           <h1 className="mt-4 text-4xl md:text-5xl font-semibold tracking-tight max-w-4xl">
-            Clarity in complexity 
+            Clarity in complexity
           </h1>
 
           <p className="mt-6 text-lg text-[#b9b2a6] max-w-3xl leading-relaxed">
@@ -50,20 +50,16 @@ export default function AboutPage() {
 
           <div className="grid md:grid-cols-2 gap-12 items-start">
 
-            {/* IMAGE (FIXED MOBILE CROPPING) */}
-            <div className="w-full rounded-xl shadow-lg overflow-hidden">
+            {/* IMAGE FIX — NO CROPPING */}
+            <div className="w-full rounded-xl shadow-lg overflow-hidden bg-[#f6f1e7] p-2">
 
-              <div className="relative w-full aspect-[4/5] md:aspect-[3/4] bg-[#f6f1e7]">
-
-                <Image
-                  src="/images/about.jpg"
-                  alt="Leah Hanson"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-[center_25%] md:object-cover"
-                />
-
-              </div>
+              <Image
+                src="/images/about.jpg"
+                alt="Leah Hanson"
+                width={900}
+                height={1100}
+                className="w-full h-auto object-contain rounded-xl"
+              />
 
             </div>
 
