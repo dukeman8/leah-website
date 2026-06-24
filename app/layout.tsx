@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     title: "Leah Hanson Legal Services",
     description:
       "Clear, trusted legal advice for wills, estate planning, trusts, probate and lasting powers of attorney.",
-    url: "https://your-domain.co.uk",
+    url: "https://leahhanson.co.uk",
     siteName: "Leah Hanson Legal Services",
     images: [
       {

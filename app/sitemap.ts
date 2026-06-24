@@ -3,19 +3,19 @@ import { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://YOURDOMAIN.CO.UK",
+      url: "://leahhanson.co.uk",
       lastModified: new Date(),
     },
     {
-      url: "https://YOURDOMAIN.CO.UK/about",
+      url: "https://leahhanson.co.uk/about",
       lastModified: new Date(),
     },
     {
-      url: "https://YOURDOMAIN.CO.UK/services",
+      url: "https://leahhanson.co.uk/services",
       lastModified: new Date(),
     },
     {
-      url: "https://YOURDOMAIN.CO.UK/contact",
+      url: "https://leahhanson.co.uk/contact",
       lastModified: new Date(),
     },
   ];

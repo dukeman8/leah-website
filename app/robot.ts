@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://YOURDOMAIN.CO.UK/sitemap.xml",
+    sitemap: "https://leahhanson.co.uk/sitemap.xml",
   };
 }
