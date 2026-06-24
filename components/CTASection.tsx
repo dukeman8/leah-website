@@ -42,17 +42,17 @@ export default function CTASection() {
             items-center
             gap-2
             rounded-md
-            bg-accent
+            bg-[#1f1f1f]
             px-6
             py-3
             text-sm
             font-medium
-            text-black
+            text-[#f6f1e7]
             transition
-            hover:bg-accent-hover
+            hover:bg-[#2a2a2a]
           "
         >
-          <span>Book a Consultation</span>
+          <span>Get in touch</span>
 
           <ArrowRight
             size={16}
