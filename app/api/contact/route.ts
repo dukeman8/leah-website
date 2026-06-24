@@ -9,8 +9,15 @@ export async function POST(req: Request) {
     const body = await req.json();
     const { token, name, email, message, telephone, enquiry } = body;
 
+    console.log("📩 Incoming form submission:", {
+      name,
+      email,
+      enquiry,
+    });
+
     // Validate required fields
     if (!token || !name || !email || !message) {
+      console.error("❌ Missing required fields");
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
@@ -31,17 +38,21 @@ export async function POST(req: Request) {
 
     const verifyData = await verifyRes.json();
 
+    console.log("🛡️ reCAPTCHA response:", verifyData);
+
     if (!verifyData.success) {
-      console.error("reCAPTCHA failed:", verifyData);
+      console.error("❌ reCAPTCHA failed:", verifyData);
       return NextResponse.json(
         { error: "Captcha verification failed" },
         { status: 400 }
       );
     }
 
+    console.log("📨 Sending email via Resend...");
+
     // Send email via Resend
     const emailResponse = await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "Leah Hanson <onboarding@resend.dev>",
       to: "leah.hanson@gunnercooke.com",
       subject: "New Contact Form Submission",
       html: `
@@ -55,8 +66,11 @@ export async function POST(req: Request) {
       `,
     });
 
+    console.log("📬 Resend response:", emailResponse);
+
     if (emailResponse.error) {
-      console.error("Resend error:", emailResponse.error);
+      console.error("❌ Resend error:", emailResponse.error);
+
       return NextResponse.json(
         { error: "Failed to send email" },
         { status: 500 }
@@ -66,7 +80,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true });
 
   } catch (error) {
-    console.error("Server error:", error);
+    console.error("🔥 Server error:", error);
+
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
