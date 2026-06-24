@@ -1,12 +1,23 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-// IMPORTANT: env var is required (must exist in Vercel)
-const resend = new Resend(process.env.RESEND_API_KEY!);
+const resendApiKey = process.env.RESEND_API_KEY;
+const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
+
+if (!resendApiKey) {
+  throw new Error("Missing RESEND_API_KEY in environment variables");
+}
+
+if (!recaptchaSecret) {
+  throw new Error("Missing RECAPTCHA_SECRET_KEY in environment variables");
+}
+
+const resend = new Resend(resendApiKey);
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
+
     const { token, name, email, message, telephone, enquiry } = body;
 
     console.log("📩 Incoming form submission:", {
@@ -17,14 +28,15 @@ export async function POST(req: Request) {
 
     // Validate required fields
     if (!token || !name || !email || !message) {
-      console.error("❌ Missing required fields");
       return NextResponse.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
 
-    // Verify reCAPTCHA
+    // -----------------------------
+    // VERIFY RECAPTCHA
+    // -----------------------------
     const verifyRes = await fetch(
       "https://www.google.com/recaptcha/api/siteverify",
       {
@@ -32,7 +44,10 @@ export async function POST(req: Request) {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
+        body: new URLSearchParams({
+          secret: recaptchaSecret,
+          response: token,
+        }),
       }
     );
 
@@ -41,20 +56,22 @@ export async function POST(req: Request) {
     console.log("🛡️ reCAPTCHA response:", verifyData);
 
     if (!verifyData.success) {
-      console.error("❌ reCAPTCHA failed:", verifyData);
       return NextResponse.json(
         { error: "Captcha verification failed" },
         { status: 400 }
       );
     }
 
+    // -----------------------------
+    // SEND EMAIL VIA RESEND
+    // -----------------------------
     console.log("📨 Sending email via Resend...");
 
-    // Send email via Resend
     const emailResponse = await resend.emails.send({
-      from: "Leah Hanson <onboarding@resend.dev>",
+      from: "Leah Hanson <mail@leahhanson.co.uk>", // ✅ FIXED
       to: "leah.hanson@gunnercooke.com",
       subject: "New Contact Form Submission",
+      reply_to: email, // optional but useful
       html: `
         <h2>New Enquiry</h2>
         <p><strong>Name:</strong> ${name}</p>
@@ -78,7 +95,6 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({ success: true });
-
   } catch (error) {
     console.error("🔥 Server error:", error);
 
