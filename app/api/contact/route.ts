@@ -65,7 +65,7 @@ export async function POST(req: Request) {
       from: "Leah Hanson <mail@leahhanson.co.uk>",
       to: "leah.hanson@gunnercooke.com",
       subject: "New Contact Form Submission",
-      reply_to: email,
+      replyTo: email,
       html: `
         <h2>New Enquiry</h2>
         <p><strong>Name:</strong> ${name}</p>
