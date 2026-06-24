@@ -4,7 +4,23 @@ export default function HeroSection() {
   return (
     <section className="min-h-[80vh] flex items-center bg-[#1c1c1c] text-[#f5f0e6]">
 
-      <div className="max-w-5xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-5xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+
+        {/* IMAGE (NOW RESPONSIVE) */}
+        <div className="relative w-full aspect-[4/5] md:h-[32rem]">
+
+          <Image
+            src="/images/you.jpg"
+            alt="Solicitor portrait"
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="rounded-xl object-cover object-top shadow-lg"
+            priority
+          />
+
+          <div className="absolute inset-0 rounded-xl bg-black/20 pointer-events-none" />
+
+        </div>
 
         {/* TEXT */}
         <div>
@@ -41,22 +57,6 @@ export default function HeroSection() {
             </a>
 
           </div>
-        </div>
-
-        {/* IMAGE */}
-        <div className="relative hidden md:block w-full h-130">
-
-          <Image
-            src="/images/you.jpg"
-            alt="Solicitor portrait"
-            fill
-            sizes="(max-width: 768px) 0vw, 50vw"
-            className="rounded-xl object-cover object-top shadow-lg"
-            priority
-          />
-
-          <div className="absolute inset-0 rounded-xl bg-black/20 pointer-events-none" />
-
         </div>
 
       </div>
