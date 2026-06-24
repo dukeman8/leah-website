@@ -4,13 +4,9 @@ import { Resend } from "resend";
 const resendApiKey = process.env.RESEND_API_KEY;
 const recaptchaSecret = process.env.RECAPTCHA_SECRET_KEY;
 
-if (!resendApiKey) {
-  throw new Error("Missing RESEND_API_KEY");
-}
-
-if (!recaptchaSecret) {
-  throw new Error("Missing RECAPTCHA_SECRET_KEY");
-}
+// Hard fail early (best practice)
+if (!resendApiKey) throw new Error("Missing RESEND_API_KEY");
+if (!recaptchaSecret) throw new Error("Missing RECAPTCHA_SECRET_KEY");
 
 const resend = new Resend(resendApiKey);
 
@@ -22,9 +18,6 @@ export async function POST(req: Request) {
 
     console.log("📩 Incoming submission:", { name, email, enquiry });
 
-    // -----------------------------
-    // VALIDATION
-    // -----------------------------
     if (!token || !name || !email || !message) {
       return NextResponse.json(
         { error: "Missing required fields" },
@@ -33,11 +26,13 @@ export async function POST(req: Request) {
     }
 
     // -----------------------------
-    // RECAPTCHA VERIFY
+    // RECAPTCHA VERIFY (FIXED)
     // -----------------------------
     const formData = new URLSearchParams();
-    formData.append("secret", recaptchaSecret);
-    formData.append("response", token);
+
+    // IMPORTANT: guaranteed strings
+    formData.append("secret", String(recaptchaSecret));
+    formData.append("response", String(token));
 
     const verifyRes = await fetch(
       "https://www.google.com/recaptcha/api/siteverify",
@@ -62,7 +57,7 @@ export async function POST(req: Request) {
     }
 
     // -----------------------------
-    // SEND EMAIL VIA RESEND
+    // SEND EMAIL
     // -----------------------------
     console.log("📨 Sending email via Resend...");
 
@@ -85,8 +80,6 @@ export async function POST(req: Request) {
     console.log("📬 Resend response:", emailResponse);
 
     if (emailResponse.error) {
-      console.error("❌ Resend error:", emailResponse.error);
-
       return NextResponse.json(
         { error: "Failed to send email" },
         { status: 500 }
