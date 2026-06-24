@@ -24,23 +24,30 @@ export default function ContactForm() {
     focus:border-[#c8a96a]
   `;
 
-  const labelClassName = "mb-2 block text-sm font-medium text-[#1f1f1f]";
+  const labelClassName =
+    "mb-2 block text-sm font-medium text-[#1f1f1f]";
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    setLoading(true);
     setSuccess(false);
     setError(null);
+
+    if (!captchaValue) {
+      setError("Please complete the captcha.");
+      return;
+    }
+
+    setLoading(true);
 
     const formData = new FormData(e.currentTarget);
 
     const payload = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      telephone: formData.get("telephone"),
-      enquiry: formData.get("enquiry"),
-      message: formData.get("message"),
+      name: String(formData.get("name") || ""),
+      email: String(formData.get("email") || ""),
+      telephone: String(formData.get("telephone") || ""),
+      enquiry: String(formData.get("enquiry") || ""),
+      message: String(formData.get("message") || ""),
       token: captchaValue,
     };
 
@@ -56,14 +63,14 @@ export default function ContactForm() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data?.error || "Something went wrong");
+        throw new Error(data?.error || "Failed to send message");
       }
 
       setSuccess(true);
       e.currentTarget.reset();
       setCaptchaValue(null);
     } catch (err: any) {
-      setError(err.message);
+      setError(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -77,22 +84,23 @@ export default function ContactForm() {
           Enquiry Form
         </p>
 
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-[#1f1f1f]">
+        <h2 className="mt-2 text-2xl font-semibold text-[#1f1f1f]">
           Send a Message
         </h2>
 
-        <p className="mt-3 leading-relaxed text-[#5f5a52]">
-          Complete the form below and we will respond as soon as possible.
+        <p className="mt-3 text-[#5f5a52]">
+          Complete the form below and we will respond shortly.
         </p>
       </div>
 
-      {/* Success / Error */}
+      {/* Success */}
       {success && (
         <p className="text-green-600 text-sm">
           Message sent successfully.
         </p>
       )}
 
+      {/* Error */}
       {error && (
         <p className="text-red-600 text-sm">
           {error}
@@ -101,40 +109,43 @@ export default function ContactForm() {
 
       {/* Name */}
       <div>
-        <label htmlFor="name" className={labelClassName}>Name</label>
-        <input id="name" name="name" required className={inputClassName} />
+        <label className={labelClassName}>Name</label>
+        <input name="name" required className={inputClassName} />
       </div>
 
       {/* Email */}
       <div>
-        <label htmlFor="email" className={labelClassName}>Email</label>
-        <input id="email" name="email" type="email" required className={inputClassName} />
+        <label className={labelClassName}>Email</label>
+        <input name="email" type="email" required className={inputClassName} />
       </div>
 
       {/* Phone */}
       <div>
-        <label htmlFor="telephone" className={labelClassName}>
-          Phone <span className="text-[#5f5a52]">(optional)</span>
-        </label>
-        <input id="telephone" name="telephone" type="tel" className={inputClassName} />
+        <label className={labelClassName}>Phone (optional)</label>
+        <input name="telephone" type="tel" className={inputClassName} />
       </div>
 
-      {/* Enquiry Type */}
+      {/* Enquiry */}
       <div>
-        <label htmlFor="enquiry" className={labelClassName}>
-          Enquiry type
-        </label>
+        <label className={labelClassName}>Enquiry type</label>
         <select
-          id="enquiry"
           name="enquiry"
           required
           defaultValue=""
           className={inputClassName}
         >
-          <option value="" disabled>Select enquiry type</option>
-          <option value="Wills & Estate Planning">Wills & Estate Planning</option>
-          <option value="Estate Administration">Estate Administration</option>
-          <option value="Lasting Powers of Attorney">Lasting Powers of Attorney</option>
+          <option value="" disabled>
+            Select enquiry type
+          </option>
+          <option value="Wills & Estate Planning">
+            Wills & Estate Planning
+          </option>
+          <option value="Estate Administration">
+            Estate Administration
+          </option>
+          <option value="Lasting Powers of Attorney">
+            Lasting Powers of Attorney
+          </option>
           <option value="Trusts">Trusts</option>
           <option value="Other">Other</option>
         </select>
@@ -142,14 +153,19 @@ export default function ContactForm() {
 
       {/* Message */}
       <div>
-        <label htmlFor="message" className={labelClassName}>Message</label>
-        <textarea id="message" name="message" rows={5} required className={inputClassName} />
+        <label className={labelClassName}>Message</label>
+        <textarea
+          name="message"
+          rows={5}
+          required
+          className={inputClassName}
+        />
       </div>
 
       {/* CAPTCHA */}
       <div className="pt-2">
         <ReCAPTCHA
-          sitekey="6LdSF-UsAAAAAJA6LaQlpUFkOfiiWVZKLoUyy3vS"
+          sitekey="6LdSF-UsAAAAAJA6LaQlpUFkOfiiWVZKLoUyy3s"
           onChange={(value) => setCaptchaValue(value)}
         />
       </div>
@@ -169,8 +185,8 @@ export default function ContactForm() {
           text-black
           transition
           hover:bg-[#d8bb7a]
-          disabled:cursor-not-allowed
           disabled:opacity-50
+          disabled:cursor-not-allowed
         "
       >
         {loading ? "Sending..." : "Send Message"}
