@@ -38,7 +38,7 @@ export default function Header() {
           </span>
 
           <span className="mt-1 block text-[10px] tracking-[0.22em] uppercase text-[#c8a96a]">
-            Private Client Solicitor
+            Private Client Solicitor at Gunnercooke
           </span>
         </Link>
 

@@ -3,28 +3,28 @@ import Image from "next/image";
 const teamMembers = [
   {
     name: "Leah Hanson TEP",
-    title: "Partner",
+    title: "Gunnercooke Partner",
     role: "Works closely with individuals and families to put the right plans in place for the future, providing clear, practical advice on Probate, Wills, Power of Attorney and Trusts.",
     image: "/images/team-1.jpg",
     position: "object-[50%_15%]",
   },
   {
     name: "Lana Fairfield",
-    title: "Partner",
+    title: "Gunnercooke Partner",
     role: "Works alongside Leah to support clients on private client matters, offering a thoughtful and collaborative approach to ensure every client feels supported and well advised.",
     image: "/images/team-2.jpg",
     position: "object-[50%_30%]",
   },
   {
     name: "Rebecca Morris",
-    title: "Legal Assistant",
+    title: "Gunnercooke Legal Assistant",
     role: "Supports clients with Wills, Powers of Attorney, Probate and Estate Administration, providing a friendly and organised approach to keep everything progressing efficiently and with attention to detail.",
     image: "/images/team-3.jpg",
     position: "object-[50%_30%]",
   },
   {
     name: "Lorraine Greenwood",
-    title: "Consultant",
+    title: "Gunnercooke Consultant",
     role: "Specialises in Probate and Estate Administration, guiding families through the process with sensitivity and care while ensuring matters are handled as smoothly as possible.",
     image: "/images/team-4.jpg",
     position: "object-[50%_25%]",

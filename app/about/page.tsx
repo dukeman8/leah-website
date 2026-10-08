@@ -94,7 +94,7 @@ export default function AboutPage() {
             </p>
 
             <h2 className="mt-3 text-2xl font-semibold tracking-tight">
-              Leah and her Team are qualified solicitors who specialise in private client law
+              Working as part of Gunnercooke, Leah and her Team are qualified solicitors who specialise in private client law
             </h2>
 
             <p className="mt-5 text-[#b9b2a6] leading-relaxed max-w-3xl">

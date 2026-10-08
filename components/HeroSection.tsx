@@ -25,7 +25,7 @@ export default function HeroSection() {
         {/* TEXT */}
         <div>
           <p className="text-xs uppercase tracking-[0.22em] text-[#c8a96a]">
-            Leah Hanson • Private Client Solicitor
+            Leah Hanson • Private Client Solicitor at Gunnercooke
           </p>
 
           <h1 className="mt-4 text-4xl md:text-6xl font-semibold leading-tight tracking-tight text-[#f5f0e6]">

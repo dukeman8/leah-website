@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Building2, Mail, MapPin, Phone } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -33,8 +33,9 @@ export default function Footer() {
               Leah Hanson
             </span>
 
-            <span className="mt-1 block text-[10px] tracking-[0.22em] uppercase text-[#c8a96a]">
-              Private Client Solicitor
+            <span className="mt-1 block text-[10px] leading-relaxed tracking-[0.22em] uppercase text-[#c8a96a]">
+              <span className="block">Gunnercooke</span>
+              <span className="mt-1 block">Private Client Solicitor</span>
             </span>
 
           </Link>
@@ -129,6 +130,24 @@ export default function Footer() {
               <span>Studio 6, Salters House, High Street, Hull, HU1 1NQ</span>
             </p>
 
+            <p className="flex gap-3">
+              <Building2
+                size={16}
+                className="mt-0.5 shrink-0 text-[#c8a96a]"
+              />
+
+              <span>Gunnercooke, West Village, Wellington St, Leeds. LS1 1BA</span>
+            </p>
+
+            <p className="flex gap-3">
+              <Building2
+                size={16}
+                className="mt-0.5 shrink-0 text-[#c8a96a]"
+              />
+
+              <span>Gunnercooke, Pall Mall, 1 Pollen Square, 59 King St, Manchester. M2 4PD</span>
+            </p>
+
           </div>
 
         </div>
@@ -141,7 +160,7 @@ export default function Footer() {
         <div className="max-w-6xl mx-auto px-6 py-5 text-xs text-[#b9b2a6] flex flex-col md:flex-row justify-between gap-2">
 
           <p>
-            © {new Date().getFullYear()} Leah Hanson Private Client Solicitor. All rights reserved.
+            © {new Date().getFullYear()} Leah Hanson Private Client Solicitor at Gunnercooke. All rights reserved.
           </p>
 
           <p>
