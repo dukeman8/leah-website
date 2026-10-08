@@ -65,7 +65,7 @@ export default function ContactPage() {
                     className="mt-0.5 shrink-0 text-[#c8a96a]"
                   />
 
-                  <span>leah.hanson@gunnercooke.co.uk</span>
+                  <span>leah.hanson@gunnercooke.com</span>
                 </p>
 
                 <p className="flex gap-3">

@@ -43,7 +43,7 @@ export default function CookiePolicyPage() {
           <div>
             <h2 className="text-2xl font-semibold">Contact</h2>
             <p className="mt-4 text-[#5f5a52] leading-relaxed">
-              For questions about cookies, please contact leah.hanson@gunnercooke.co.uk.
+              For questions about cookies, please contact leah.hanson@gunnercooke.com.
             </p>
           </div>
         </div>

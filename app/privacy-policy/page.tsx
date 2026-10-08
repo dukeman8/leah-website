@@ -64,7 +64,7 @@ export default function PrivacyPolicyPage() {
                 </p>
 
                 <p className="mt-2">
-                  Email: leah.hanson@gunnercooke.co.uk
+                  Email: leah.hanson@gunnercooke.com
                 </p>
 
                 <p className="mt-1">

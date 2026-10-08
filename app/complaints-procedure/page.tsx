@@ -43,7 +43,7 @@ export default function ComplaintsProcedurePage() {
           <div>
             <h2 className="text-2xl font-semibold">Contact</h2>
             <p className="mt-4 text-[#5f5a52] leading-relaxed">
-              Please contact leah.hanson@gunnercooke.co.uk with any complaint or concern.
+              Please contact leah.hanson@gunnercooke.com with any complaint or concern.
             </p>
           </div>
         </div>
