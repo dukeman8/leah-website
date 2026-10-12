@@ -98,7 +98,7 @@ export default function AboutPage() {
             </h2>
 
             <p className="mt-5 text-[#b9b2a6] leading-relaxed max-w-3xl">
-              The Team have extensive experience advising individuals and families on estate planning and related legal matters, dealing with a variety of types of clients including business owners and high networth individuals.
+              The Team have extensive experience advising individuals and families on estate planning and related legal matters, dealing with a variety of types of clients including business owners and high net worth individuals.
             </p>
 
             <p className="mt-5 text-[#b9b2a6] leading-relaxed max-w-3xl">
