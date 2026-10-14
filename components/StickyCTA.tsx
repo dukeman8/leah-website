@@ -16,13 +16,13 @@ export default function StickyCTA() {
           href="/contact"
           className="
             shrink-0
-            bg-[#2a2a2a]
+            bg-[#4a4a4a]
             text-[#f6f1e7]
             px-4 py-2
             rounded-md
             text-sm
             font-medium
-            hover:bg-[#3a3a3a]
+            hover:bg-[#5a5a5a]
             transition
           "
         >

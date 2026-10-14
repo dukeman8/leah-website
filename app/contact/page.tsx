@@ -33,12 +33,12 @@ export default function ContactPage() {
 
       {/* CONTENT */}
       <section className="bg-[#f6f1e7]">
-        <div className="max-w-6xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12">
+        <div className="mx-auto grid max-w-6xl min-w-0 grid-cols-1 gap-8 px-4 py-16 sm:px-6 sm:py-24 md:grid-cols-2 md:gap-12">
 
           {/* LEFT */}
-          <div className="space-y-6">
+          <div className="min-w-0 space-y-6">
 
-            <div className="rounded-xl border border-[#d8d2c7] bg-[#fffaf0] p-8">
+            <div className="min-w-0 rounded-xl border border-[#d8d2c7] bg-[#fffaf0] p-5 sm:p-8">
 
               <p className="text-xs uppercase tracking-[0.22em] text-[#c8a96a]">
                 Contact details
@@ -50,7 +50,7 @@ export default function ContactPage() {
 
               <div className="mt-6 space-y-5 text-[#5f5a52]">
 
-                <p className="flex gap-3">
+                <p className="flex min-w-0 gap-3">
                   <Phone
                     size={18}
                     className="mt-0.5 shrink-0 text-[#c8a96a]"
@@ -59,29 +59,29 @@ export default function ContactPage() {
                   <span>01482 762484</span>
                 </p>
 
-                <p className="flex gap-3">
+                <p className="flex min-w-0 gap-3">
                   <Mail
                     size={18}
                     className="mt-0.5 shrink-0 text-[#c8a96a]"
                   />
 
-                  <span>leah.hanson@gunnercooke.com</span>
+                  <span className="break-all">leah.hanson@gunnercooke.com</span>
                 </p>
 
-                <p className="flex gap-3">
+                <p className="flex min-w-0 gap-3">
                   <MapPin
                     size={18}
                     className="mt-0.5 shrink-0 text-[#c8a96a]"
                   />
 
-                  <span>Studio 6, Salters House, High Street, Hull, HU1 1NQ</span>
+                  <span className="min-w-0 break-words">Studio 6, Salters House, High Street, Hull, HU1 1NQ</span>
                 </p>
 
               </div>
 
             </div>
 
-            <div className="rounded-xl border border-[#d8d2c7] bg-[#fffaf0] p-8">
+            <div className="min-w-0 rounded-xl border border-[#d8d2c7] bg-[#fffaf0] p-5 sm:p-8">
 
               <p className="text-xs uppercase tracking-[0.22em] text-[#c8a96a]">
                 Locations
@@ -91,13 +91,13 @@ export default function ContactPage() {
                 Working with clients across the UK
               </h2>
 
-              <p className="mt-5 flex gap-3 text-[#5f5a52] leading-relaxed">
+              <p className="mt-5 flex min-w-0 gap-3 text-[#5f5a52] leading-relaxed">
                 <MapPin
                   size={18}
                   className="mt-0.5 shrink-0 text-[#c8a96a]"
                 />
 
-                <span>Hull • Leeds • Manchester • London</span>
+                <span className="min-w-0 break-words">Hull • Leeds • Manchester • London</span>
               </p>
 
             </div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT */}
-          <div className="rounded-xl border border-[#d8d2c7] bg-[#fffaf0] p-8">
+          <div className="min-w-0 rounded-xl border border-[#d8d2c7] bg-[#fffaf0] p-5 sm:p-8">
             <ContactForm />
           </div>
 

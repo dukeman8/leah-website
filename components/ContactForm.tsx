@@ -167,7 +167,7 @@ export default function ContactForm() {
       </div>
 
       {/* CAPTCHA */}
-      <div className="pt-2">
+      <div className="contact-captcha pt-2">
         <ReCAPTCHA
           sitekey="6LdSF-UsAAAAAJA6LaQlpUFkOfiiWVZKLoUyy3vS"
           onChange={(value) => setCaptchaValue(value)}

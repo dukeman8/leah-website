@@ -35,3 +35,15 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
+
+@media (max-width: 380px) {
+  .contact-captcha {
+    height: 64px;
+    overflow: hidden;
+  }
+
+  .contact-captcha > div {
+    transform: scale(0.82);
+    transform-origin: top left;
+  }
+}
